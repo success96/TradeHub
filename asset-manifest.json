@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/TradeHub/static/css/main.df786ba9.css",
+    "main.js": "/TradeHub/static/js/main.9461520d.js",
+    "index.html": "/TradeHub/index.html",
+    "main.df786ba9.css.map": "/TradeHub/static/css/main.df786ba9.css.map",
+    "main.9461520d.js.map": "/TradeHub/static/js/main.9461520d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.df786ba9.css",
+    "static/js/main.9461520d.js"
+  ]
+}
