@@ -14,7 +14,7 @@
   "homepage": "https://success96.github.io/TradeHub",
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d build --repo https://github.com/success96/TradeHub.git",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
