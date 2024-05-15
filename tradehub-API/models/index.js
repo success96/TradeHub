@@ -14,31 +14,32 @@ const Sequelize = require('sequelize');
                 min: dbConfig.pool.min,
                 acquire: dbConfig.pool.acquire,
                 idle: dbConfig.pool.idle
-            }
+            },
+            dialectOptions: { 
+                decimalNumbers: true 
+            },
+            logging: console.log('Query executed successfully')
         }
     );
-
-        // sequelize.authenticate().then(() => {
-        //    console.log('Connection has been established successfully.');
-        // }).catch((error) => {
-        //    console.error('Unable to connect to the database: ', error.message);
-        // });     
+ 
      
 
-const User = require('./user.js');
-const Business = require('./business.js')(sequelize, Sequelize)
-const Product = require('./product.js');
+const user = require('./user.js')(sequelize, Sequelize);
+const business = require('./business.js')(sequelize, Sequelize);
+const product = require('./product.js')(sequelize, Sequelize);
+
       
-      
-      // --------------------------------------Relationships----------------------------------------------
-    //   User.belongsToMany(Business, {through: 'business_owner'});
-    //   Business.belongsToMany(User, {through: 'business_owner'});
-    //   Business.hasMany(Product, {foreignKey: 'business_id'});
+// --------------------------------------Relationships----------------------------------------------
+business.hasMany(product, {as: 'products', foreignKey: {name: 'business_id', allowNull: false}});
+product.belongsTo(business)
+user.belongsToMany(business, {through: 'business_owner'});
+business.belongsToMany(user, {through: 'business_owner'});
+
 
 module.exports = {
     Sequelize, 
     sequelize, 
-    User,
-    Business,
-    Product
+    user,
+    business,
+    product
 };

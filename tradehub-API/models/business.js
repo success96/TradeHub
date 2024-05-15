@@ -1,5 +1,4 @@
 const { DataTypes} = require('sequelize');
-const sequelize = require('../config/db');
 
 module.exports = (sequelize, Sequelize) => {
   const Business = sequelize.define('business', {
@@ -24,8 +23,7 @@ module.exports = (sequelize, Sequelize) => {
   phoneNumber: {
     type: DataTypes.STRING
   },
-  physicalAddress: {
-    type: DataTypes.STRING
-  }
 });
+return Business;
+
 }
