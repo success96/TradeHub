@@ -9,11 +9,11 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-const db = require('./models/database.js');
+const db = require('./models');
 // db.sequelize.sync({ force: true }).then(() => {
 //     console.log("Drop and re-sync db.");
 // });
-db.sequelize.sync();
+
 
 
 app.get('/', async (req, res) => {
@@ -23,9 +23,15 @@ app.get('/', async (req, res) => {
 app.use('/users', require('./routes/users.routes.js'))
 
 
-
 const port = process.env.PORT || 8000
 
-app.listen(port, () => {
-    console.log('listening at port '+ port)
-})
+try {
+    console.log('Connecting to the database!!!');
+    db.sequelize.sync();
+    app.listen(port, () => {
+        console.log('listening at port '+ port)
+    })
+} catch (error) {
+    console.log(error.message);
+    
+}
